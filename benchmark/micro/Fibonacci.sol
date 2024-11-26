@@ -1,10 +1,10 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract FibonacciV350 {
-    // parameter list: 50, 100, 150, 200, 250, 300, 350
-    uint num = 350;
+contract Fibonacci {
+    uint32 num = 300;
+    uint32 idx = 0;
     uint result = 0;
-    uint idx = 0;
     uint fib1 = 0;
     uint fib2 = 0;
 

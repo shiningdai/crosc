@@ -1,9 +1,9 @@
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.0;
 
-contract BaseSampleV3000 {
-    // parameter list: 100, 500, 1000, 1500, 2000, 2500, 3000
+contract BaseSample {
     uint128 stat1 = 0;
-    uint256 stat2 = 3000;
+    uint256 stat2 = 2000;
     uint128 stat3 = 0;
     
     function opVars() public returns(uint256){

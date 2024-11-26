@@ -4,8 +4,11 @@ contract ERC20 {
     uint256 public _totalSupply;
     mapping (address => uint256) public balances;
     mapping (address => mapping (address => uint256)) private allowed;
+    uint256 public constant MAX_SUPPLY = 100000;
     
     function totalSupply() public view returns (uint256) {
+        require(_totalSupply >= 0, "Supply cannot be negative");
+        require(_totalSupply <= MAX_SUPPLY, "Supply exceeds max limit");
         return _totalSupply;
     }
 
