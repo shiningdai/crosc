@@ -170,7 +170,8 @@ bool BufferContextHelper::visit(Identifier const& _identifier)
 		return false;
 	Type const* _type = _variableDeclaration->annotation().type;
 	// Type const* _type = _variableDeclaration->value()->annotation().type;
-	if ( _variableDeclaration->isStateVariable() && _type->isValueType())
+	// if ( _variableDeclaration->isStateVariable() && _type->isValueType())
+	if ( _variableDeclaration->isStateVariable() && _type->isValueType() && !_variableDeclaration->isConstant())
 	{
 		if (m_varCounter.count(_variableDeclaration) == 0)
 			m_varCounter[_variableDeclaration] = 1;
