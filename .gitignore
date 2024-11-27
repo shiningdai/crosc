@@ -2,3 +2,4 @@ build
 *.bin
 *.abi
 *.log
+*.bak
