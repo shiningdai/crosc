@@ -29,9 +29,14 @@ This repository includes 4 sub-directories as follows:
 ## Profiling on ERC20
 We have performed a fine-grained performance profiling of smart contract execution at the instruction level by evaluating the famous ERC20 contract, as presented in the figure below: in most functions, the latencies of state load and store instructions, `SLOAD` and `SSTORE`, significantly exceed that of all the other instructions.
 Take the *totalSupply* function as an example, which retrieves the total supply of tokens that have been minted.
-% In this function, the latency of the `SLOAD` instruction can account for 83.7% of the overall execution latency.
+In this function, the latency of the `SLOAD` instruction can account for 83.7% of the overall execution latency.
 <!-- despite being executed only once. -->
+<!-- ![The latency of all executed instructions in the typical five functions of the ERC20 contract.](./images/erc20_profiling.png "Instruction latency in ERC20 functions") -->
 
-![The latency of all executed instructions in the typical five functions of the ERC20 contract.](./images/erc20_profiling.png "Instruction latency in ERC20 functions")
+<div style="text-align: center;">
+  <img src="./images/erc20_profiling.png" alt="Instruction latency in ERC20 functions" style="width:60%; height:auto;" title="The latency of all executed instructions in the typical five functions of the ERC20 contract">
+</div>
+
+
 
 
