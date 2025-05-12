@@ -1,0 +1,12 @@
+// for building solc
+GCC (version 11+)
+CMake (version 3.21.3+)
+Boost (version 1.67+)
+
+
+// for building geth
+Go (version 1.16+)
+
+
+// for runing evaluation scripts
+web3.py (version 5.31.4)
