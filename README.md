@@ -44,6 +44,23 @@ In this function, the latency of the `SLOAD` instruction can account for 83.7% o
 ---
 
 # How to use CROSC
+## Environment requirements
+```bash
+// for building solc
+GCC (version 11+)
+CMake (version 3.21.3+)
+Boost (version 1.67+)
+
+
+// for building geth
+Go (version 1.16+)
+git
+
+
+// for runing evaluation scripts
+web3.py (version 5.31.4)
+```
+
 ## Clone this repository
 ```bash
 # Clone the source code
