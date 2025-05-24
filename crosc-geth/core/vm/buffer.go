@@ -33,36 +33,69 @@ func NewBuffer() *Buffer {
 	return &Buffer{}
 }
 
-// Set32 sets the 32 bytes starting at offset to the value of val, left-padded with zeroes to
-// 32 bytes.
+// // Set32 sets the 32 bytes starting at offset to the value of val, left-padded with zeroes to 32 bytes.
+// func (b *Buffer) Set32(index uint64, val *uint256.Int) {
+// 	// // log
+// 	// buffer_log, _err_op := os.OpenFile("/home/dsr/experiments/m_ethereum/solcplus_verify/interpreter-logs/230612/bufStore_230612_2.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
+// 	// if _err_op != nil {
+// 	// 	fmt.Println(_err_op.Error())
+// 	// }
+// 	// defer buffer_log.Close()
+// 	// length of store may never be less than offset + size.
+// 	// The store should be resized PRIOR to setting the Buffer
+// 	// buffer_log.WriteString("Before verify length of store\n")
+// 	if index+32 > uint64(len(b.store)) {
+// 		panic("invalid Buffer: store empty")
+// 	}
+
+// 	// Fill in relevant bits
+// 	b32 := val.Bytes32()
+// 	copy(b.store[index*32:(index+1)*32], b32[:])
+// 	// // log
+// 	// log_str := fmt.Sprintf("\nBSTORE args:\nbuffer index:%v\nvalue to store:%v\n", index, b32)
+// 	// buffer_log.WriteString(log_str)
+// }
+
+
+// Set32 sets a 32-byte value at the specified index in the buffer.
+// If the underlying buffer is not large enough to hold the value,
+// it resizes the buffer to accommodate the data. The resize strategy
+// increases the buffer size by 25% (1.25x), or to the required size,
+// whichever is larger, while preserving existing data.
 func (b *Buffer) Set32(index uint64, val *uint256.Int) {
-	// // log
-	// buffer_log, _err_op := os.OpenFile("/home/dsr/experiments/m_ethereum/solcplus_verify/interpreter-logs/230612/bufStore_230612_2.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
-	// if _err_op != nil {
-	// 	fmt.Println(_err_op.Error())
-	// }
-	// defer buffer_log.Close()
-	// length of store may never be less than offset + size.
-	// The store should be resized PRIOR to setting the Buffer
-	// buffer_log.WriteString("Before verify length of store\n")
-	if index+32 > uint64(len(b.store)) {
-		panic("invalid Buffer: store empty")
+	requiredSize := (index + 1) * 32
+	currentSize := uint64(len(b.store))
+
+	if currentSize < requiredSize {
+		// increases the buffer size by 25% (1.25x), or to the required size
+		newSize := currentSize + currentSize/4
+		if newSize < requiredSize {
+			newSize = requiredSize
+		}
+		b.Resize(newSize)
 	}
 
-	// Fill in relevant bits
 	b32 := val.Bytes32()
 	copy(b.store[index*32:(index+1)*32], b32[:])
-	// // log
-	// log_str := fmt.Sprintf("\nBSTORE args:\nbuffer index:%v\nvalue to store:%v\n", index, b32)
-	// buffer_log.WriteString(log_str)
 }
 
-// Resize resizes the Buffer to size
+
+
+// // Resize resizes the Buffer to size
+// func (b *Buffer) Resize(size uint64) {
+// 	if uint64(b.Len()) < size {
+// 		b.store = append(b.store, make([]byte, size-uint64(b.Len()))...)
+// 	}
+// }
 func (b *Buffer) Resize(size uint64) {
-	if uint64(b.Len()) < size {
-		b.store = append(b.store, make([]byte, size-uint64(b.Len()))...)
+	currentLen := uint64(len(b.store))
+	if currentLen < size {
+		newStore := make([]byte, size)
+		copy(newStore, b.store)
+		b.store = newStore
 	}
 }
+
 
 // GetPtr returns the offset + size
 func (b *Buffer) GetPtr(index int64) []byte {

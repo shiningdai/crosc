@@ -38,7 +38,7 @@ contract TheDAO {
     // support: willingness to support (from 1 to 10)
     // >5 indicates support; <=5 indicates opposition. 
     function vote(uint32 support) public {
-        shares = (support > 5) ? (sharesUser1 + sharesUser2) / 2 : (sharesUser1 + sharesUser2) / 3;
+        shares = (support > 5) ? sharesUser1 : sharesUser2;
         require(shares > 0, "No shares to vote with");
         require(!executed, "Proposal already executed");
         require(totalShares > 0, "Invalid total shares");
