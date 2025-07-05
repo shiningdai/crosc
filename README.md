@@ -129,3 +129,18 @@ The process of setting up the test network and interacting with smart contracts 
 
 To facilitate the process, we provide several utility scripts under the `scripts/` directory. These scripts contain common tasks such as initializing the test network, deploying contracts, and invoking contract functions.
 
+**Citation**
+This work has been accepted by IEEE Transactions on Computers.
+If you use this work for your research, please cite the paper:
+```
+@ARTICLE{11053674,
+  author={Dai, Surong and Yang, Jinni and Cui, Wenyang and Fang, Yaozheng and Lu, Ye},
+  journal={IEEE Transactions on Computers}, 
+  title={CROSC: Compilation-Runtime Joint Optimization for Fast Smart Contract Execution}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-14},
+  keywords={Smart contracts;Blockchains;Memory management;Optimization;Codes;Source coding;Virtual machines;Peer-to-peer computing;Standards;High level languages;Smart contract;compiler optimization;state access;virtual machine;computer architecture},
+  doi={10.1109/TC.2025.3583734}}
+```
