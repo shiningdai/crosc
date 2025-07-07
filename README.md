@@ -129,9 +129,9 @@ The process of setting up the test network and interacting with smart contracts 
 
 To facilitate the process, we provide several utility scripts under the `scripts/` directory. These scripts contain common tasks such as initializing the test network, deploying contracts, and invoking contract functions.
 
-**Citation**
+# Citation
 This work has been accepted by IEEE Transactions on Computers.
-If you use this work for your research, please cite the paper:
+If you use this codebase, or otherwise found our work valuable, please cite:
 ```
 @ARTICLE{11053674,
   author={Dai, Surong and Yang, Jinni and Cui, Wenyang and Fang, Yaozheng and Lu, Ye},
